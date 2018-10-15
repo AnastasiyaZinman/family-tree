@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   //   addUser(){
-  //      axios.post('http://localhost:5000/add_user', {name:"John Gold"}, {
+  //      axios.post('http://localhost:5001/add_user', {name:"John Gold"}, {
   //       headers: {
   //           'Content-Type': 'application/json',
   //       }
@@ -74,7 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Some text</div>
+        <div className="title t-font">Family Tree</div>
 
         {/* <SearchForm /> */}
         {/* <UserBoxs /> */}
@@ -82,7 +82,7 @@ class App extends Component {
           {this.generateOptions()}
         </select>
 
-        <button onClick={this.getChildren}>Find childs</button>
+        <button type="button" className="ml-5 btn btn-primary btn-sm" onClick={this.getChildren}>Find childs</button>
         {(this.state.parent?<UserBox parent={this.state.parent} children={this.state.children}/>:null)}
       </div>
     );
