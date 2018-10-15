@@ -40,8 +40,8 @@ router.get('/getChildren/:id', async(req,res) => {
 
 
     .then((users) =>{ 
-        
-        res.json(users)}).error((err)=>{
+        res.json(users)})
+    .error((err)=>{
             res.status(500).send(err);
         })
 })

@@ -4,7 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import axios from 'axios';
 // import SearchForm from './js/search';
-// import UserBoxs from './js/userBox';
+import UserBox from './components/UserBox';
 // import { observable, action, computed } from '../node_modules/mobx';
 // @inject("store")
 // @observer 
@@ -65,7 +65,7 @@ class App extends Component {
     axios.get(`http://localhost:5001/getChildren/${userId}`)
       .then(result => {
         console.log(result.data);
-        this.setState({ children: result.data })
+        this.setState({ children: result.data["Children"] })
       })
   }
 
@@ -81,7 +81,7 @@ class App extends Component {
         </select>
 
         <button onClick={this.getChildren}>Find childs</button>
-
+        {(this.state.children?<UserBox data={this.state.children}/>:null)}
       </div>
     );
   }
