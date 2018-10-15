@@ -10,14 +10,15 @@ class UserBox extends Component {
   <div className="text-center">{this.props.parent["name"]}
   <img className="img_av" src={this.props.parent["imgUrl"]} alt={this.props.parent["name"]} />
   </div>
+  <div className="childrenBox">
  {this.props.children.map((item,i) => {
     return(<div className="m-w-button" key={item.id}>
-    
     <img className="img_av" src={item.imgUrl} alt={item.name} />
     {item.name}
     </div>
     )}
     )}
+    </div>
     </div>)
 }
 }

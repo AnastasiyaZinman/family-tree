@@ -3,7 +3,14 @@
 }
 
 .img_av{
-  width: 50px;
+  width: 100px;
+}
+.childrenBox{
+  height:200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
