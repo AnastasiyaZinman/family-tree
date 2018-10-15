@@ -11,8 +11,8 @@ imgUrl: {
 });
 
 const Parent = sequelize.define('parent', {});
-Person.belongsToMany(Person, { through: Parent, as: 'userId', otherKey: 'userId' });
-Person.belongsToMany(Person, { through: Parent, as: 'parentId', otherKey: 'parentId' });
+Person.belongsToMany(Person, { through: Parent, as: 'Parents', foreignKey: 'personId' });
+Person.belongsToMany(Person, { through: Parent, as: 'Children', foreignKey: 'parentId' });
 
 
 // Parent.sync()

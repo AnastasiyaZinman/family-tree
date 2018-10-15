@@ -25,6 +25,26 @@ router.get('/getUsers', async(req,res) => {
     Person.findAll()
     .then(users => res.json(users))
 })
+router.get('/getChildren/:id', async(req,res) => {
+    userId=req.params.id;
+    console.log("userId",userId);
+    Person.find({
+        include: [{model:Person, as:"Children"}],
+        where: {id: userId }
+      })
+    //   .then(results => 
+    //         results.movies.forEach(movie => {
+    //             console.log(movie.dataValues.m_name) 
+    //         })
+            // );
+
+
+    .then((users) =>{ 
+        
+        res.json(users)}).error((err)=>{
+            res.status(500).send(err);
+        })
+})
 
 router.get('/addParent', async(req,res) => {
     let person = await Person.find({  where:{name:""} })

@@ -13,14 +13,13 @@ class App extends Component {
     super();
     this.state = {
       users: ["one"],
-      selectedOption:""
+      selectedOption:1,
+      children:[]
     }
   }
   generateOptions() {
     return this.state.users.map((item, i) => {
-      // console.log("item",item);
-      let optionValue = item.name//(item.text!=="First Contact")? item.text.toLowerCase(): "firstContact";//item.text.split(' ').join('');
-      //item.text.split(' ').join('');            
+      let optionValue = item.name;
       return (<option
         value={item.id}
         key={i}>{optionValue}
@@ -60,6 +59,15 @@ class App extends Component {
         this.setState({ users: result.data })
       })
   }
+  getChildren = () => {
+    let userId=this.state.selectedOption;
+    console.log("userId",userId);
+    axios.get(`http://localhost:5001/getChildren/${userId}`)
+      .then(result => {
+        console.log(result.data);
+        this.setState({ children: result.data })
+      })
+  }
 
   render() {
     return (
@@ -72,7 +80,7 @@ class App extends Component {
           {this.generateOptions()}
         </select>
 
-        <button onClick={this.getUsers}>Add</button>
+        <button onClick={this.getChildren}>Find childs</button>
 
       </div>
     );
