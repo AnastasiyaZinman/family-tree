@@ -1,7 +1,7 @@
 var express = require('express');
 const bodyParser = require('body-parser');
 const api = require('./serverApis/usersApi')
-
+// const router = express.Router();
 var app = express();
 
 app.use(function (req, res, next) {
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', api)
 
-const SERVER_PORT=5000;
+const SERVER_PORT=5001;
 //-------------------------
 
 //-------------------------------------------
