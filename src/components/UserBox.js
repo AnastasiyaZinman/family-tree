@@ -4,11 +4,16 @@ import React, { Component } from 'react';
 class UserBox extends Component {
 
     render() {
-        return (
-<div>
-{this.props.data.map((item,i) => {
+   return (
+
+    <div>
+  <div className="text-center">{this.props.parent["name"]}
+  <img className="img_av" src={this.props.parent["imgUrl"]} alt={this.props.parent["name"]} />
+  </div>
+ {this.props.children.map((item,i) => {
     return(<div className="m-w-button" key={item.id}>
-    <img src={item.imgUrl} alt={item.name} />
+    
+    <img className="img_av" src={item.imgUrl} alt={item.name} />
     {item.name}
     </div>
     )}

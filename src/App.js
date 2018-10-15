@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       users: ["one"],
       selectedOption:1,
-      children:[]
+      children:[],
+      parent:""
     }
   }
   generateOptions() {
@@ -65,7 +66,8 @@ class App extends Component {
     axios.get(`http://localhost:5001/getChildren/${userId}`)
       .then(result => {
         console.log(result.data);
-        this.setState({ children: result.data["Children"] })
+        this.setState({ parent: result.data,
+                        children: result.data["Children"] })
       })
   }
 
@@ -81,7 +83,7 @@ class App extends Component {
         </select>
 
         <button onClick={this.getChildren}>Find childs</button>
-        {(this.state.children?<UserBox data={this.state.children}/>:null)}
+        {(this.state.parent?<UserBox parent={this.state.parent} children={this.state.children}/>:null)}
       </div>
     );
   }
