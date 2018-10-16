@@ -13,9 +13,11 @@
   margin: 10px;
 }
 .userBox{
-  margin-top: 20px;
+  margin-top: 30px;
 }
-
+.btn-round{
+  border-radius:50%;
+}
 .img_av{
   width: 100px;
 }

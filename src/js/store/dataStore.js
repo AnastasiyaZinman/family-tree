@@ -4,7 +4,7 @@ class DataStore {
 	@observable users = [];
 	@observable children=[];
 	@observable parent= "";
-	@observable  selectedOption= 0;
+	@observable  selectedOption= 1;
 
 	// @computed get iceCreamsFilteredCount() {
 	// 	return this.filterIceCreams.length;
