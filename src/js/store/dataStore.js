@@ -5,7 +5,14 @@ class DataStore {
 	@observable children=[];
 	@observable parent= "";
 	@observable  selectedOption= 1;
+	@observable addChildBox=false;
+	@observable  currentIdForAddChild= 1;
 
+
+	@action closeAddBox = () => {
+		console.log("close");
+		this.addChildBox = false;
+	}
 	// @computed get iceCreamsFilteredCount() {
 	// 	return this.filterIceCreams.length;
 	// }
@@ -25,6 +32,10 @@ class DataStore {
 				console.log("this children",result.data["Children"]);
 		})
 	}
+	@action addChild =(id) =>{
+		console.log("clickedChild",id);
+		
+    }
 
 }
 

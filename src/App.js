@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import AddChild from './components/AddChild'
 import axios from 'axios';
 import SearchOptions from './components/SearchBox';
+
 @inject("store")
 @observer
 class App extends Component {
@@ -33,6 +35,8 @@ class App extends Component {
         {/* <SearchForm /> */}
         {/* <UserBoxs /> */}
         <SearchOptions />
+        {this.props.store.addChildBox ?
+       <AddChild id={this.props.store.currentIdForAddChild} /> : null }
       </div>
     );
   }
