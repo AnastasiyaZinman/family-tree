@@ -1,10 +1,9 @@
 import { observable, action, computed } from "mobx";
-import { userInfo } from "os";
 
 class DataStore {
-	// @observable userInfo = [
-	// 	{ flavor: 'Chocolate', color: 'black', id: 0, imgPath: "http://icons.iconarchive.com/icons/icons-land/3d-food/256/IceCream-Cone-icon.png" }];
-	// @observable filterString = "";
+	@observable users = [];
+	@observable  children: [];
+    @observable  parent: "";
 	
 	// @computed get iceCreamsFilteredCount() {
 	// 	return this.filterIceCreams.length;

@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-// import { observer, inject } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import axios from 'axios';
 // import SearchForm from './js/search';
 import UserBox from './components/UserBox';
-// import { observable, action, computed } from '../node_modules/mobx';
-// @inject("store")
-// @observer 
+import { observable, action, computed } from '../node_modules/mobx';
+@inject("store")
+@observer
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      users: ["one"],
-      selectedOption:1,
-      children:[],
-      parent:""
+      // users: [],
+      selectedOption: 1,
     }
   }
   generateOptions() {
-    return this.state.users.map((item, i) => {
+    return this.props.store.users.map((item, i) => {
       let optionValue = item.name;
       return (<option
         value={item.id}
@@ -29,25 +27,10 @@ class App extends Component {
     })
   }
 
-  //   addUser(){
-  //      axios.post('http://localhost:5001/add_user', {name:"John Gold"}, {
-  //       headers: {
-  //           'Content-Type': 'application/json',
-  //       }
-  //   }
-  //   )
-  //   .then(response => {
-  //     console.log("response from DB",response);
-  //   })
-  //   .catch(function (error) {
-  //     alert("Sorry, something wrong. New client haven't added.");
-  //     console.log(error);
-  //   });
-  // }
 
   updateSelectedOption = (e) => {
-    console.log("selected value",e.target.value);
-    this.setState({selectedOption: e.target.value})
+    console.log("selected value", e.target.value);
+    this.setState({ selectedOption: e.target.value })
   }
 
   componentDidMount() {
@@ -57,17 +40,21 @@ class App extends Component {
     axios.get('http://localhost:5001/getUsers')
       .then(result => {
         console.log(result.data);
-        this.setState({ users: result.data })
+        this.props.store.users = result.data;
+        // this.setState({ users: result.data })
       })
   }
   getChildren = () => {
-    let userId=this.state.selectedOption;
-    console.log("userId",userId);
+    let userId = this.state.selectedOption;
+    console.log("userId", userId);
     axios.get(`http://localhost:5001/getChildren/${userId}`)
       .then(result => {
         console.log(result.data);
-        this.setState({ parent: result.data,
-                        children: result.data["Children"] })
+        this.setState({
+          parent: result.data,
+          children: result.data["Children"] })
+          this.props.store.parent=result.data;
+          this.props.store.children=result.data["Children"]     
       })
   }
 
@@ -83,7 +70,7 @@ class App extends Component {
         </select>
 
         <button type="button" className="ml-5 btn btn-primary btn-sm" onClick={this.getChildren}>Find childs</button>
-        {(this.state.parent?<UserBox parent={this.state.parent} children={this.state.children}/>:null)}
+        {(this.state.parent ? <UserBox parent={this.state.parent} children={this.state.children} /> : null)}
       </div>
     );
   }
