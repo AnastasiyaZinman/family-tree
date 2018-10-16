@@ -22,11 +22,16 @@ class SearchOptions extends Component {
 
         })
     }
-
+    clearTree=()=>{
+        this.props.store.parent="";
+        this.props.store.children=[];
+    }
+    
     updateSelectedOption = (e) => {
         console.log("selected value", e.target.value);
         // this.setState({ selectedOption: e.target.value })
         this.props.store.selectedOption =e.target.value;
+        this.clearTree();
     }
 
     render() {
