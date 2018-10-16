@@ -1,7 +1,7 @@
 .modal-body{
   position: absolute;
-  margin-top: -250px;
-  margin-left: 200px;
+  margin-top: -20%;
+  margin-left: 30%;
   width:500px;
   z-index: 20;
   background-color:white;

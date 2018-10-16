@@ -3,10 +3,11 @@ import { observer, inject } from 'mobx-react';
 @inject("store")
 @observer
 class UserBox extends Component {
-    addChild =(id)=>{
-        console.log("id",id);
+    
+    addChild =(userId)=>{
+        console.log("userId",userId);
         this.props.store.addChildBox=true;
-        this.props.store.currentIdForAddChild=id;
+        this.props.store.currentUserIdForAddChild=userId;
     }
     
     render() {

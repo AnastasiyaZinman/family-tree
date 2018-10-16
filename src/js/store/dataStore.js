@@ -6,7 +6,7 @@ class DataStore {
 	@observable parent= "";
 	@observable  selectedOption= 1;
 	@observable addChildBox=false;
-	@observable  currentIdForAddChild= 1;
+	@observable  currentUserIdForAddChild= {};
 
 
 	@action closeAddBox = () => {
@@ -32,10 +32,48 @@ class DataStore {
 				console.log("this children",result.data["Children"]);
 		})
 	}
-	@action addChild =(id) =>{
-		console.log("clickedChild",id);
+	@action addChildToDb = (newUserData) => {
 		
-    }
+		newUserData["parentId"]=this.currentUserIdForAddChild;
+		console.log("clickedChild", newUserData);
+		axios.post('http://localhost:5001/addChild', newUserData, {
+          headers: {
+              'Content-Type': 'application/json',
+          }
+      }
+      )
+      .then(response => {
+        console.log("response from DB",response);
+        // this.addNewClientToState(response.data)
+      })
+      .catch(function (error) {
+        alert("Sorry, something wrong. New client haven't added.");
+        console.log(error);
+	  });
+	  this.closeAddBox();
+    console.log("Added to DB")
+  }
+
+//   updateClientDetailsDB = (data) =>{
+//     console.log('DATA FOR DB', data);
+//     axios.post('http://localhost:5000/updateClientInfo', data, {
+//           headers: {
+//               'Content-Type': 'application/json',
+//           }
+//       }
+//       )
+//       .then(response => {
+//         console.log("response from DB",response);
+//         // this.addNewClientToState(response.data)
+//       })
+//       .catch(function (error) {
+//         alert("Sorry, something wrong. New client haven't added.");
+//         console.log(error);
+//       });
+//       console.log("Updated in DB")
+//   }
+
+//     }
 
 }
 
