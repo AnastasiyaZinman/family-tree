@@ -19,7 +19,9 @@ class AddChild extends Component {
     }
      sendNewUserInfo = () => {
         console.log('Clicked');
+        if(this.newUserInfo.name && this.newUserInfo.imgUrl)
         this.props.addChildToDb(this.newUserInfo) 
+        else alert("Please write name and add image link");
     }
     
   

@@ -32,8 +32,13 @@ class DataStore {
 				console.log("this children",result.data["Children"]);
 		})
 	}
+
+	addNewUserToState=(newUser)=>{
+		this.users.push(newUser);
+		console.log(this.users);
+
+	}
 	@action addChildToDb = (newUserData) => {
-		
 		newUserData["parentId"]=this.currentUserIdForAddChild;
 		console.log("clickedChild", newUserData);
 		axios.post('http://localhost:5001/addChild', newUserData, {
@@ -44,7 +49,7 @@ class DataStore {
       )
       .then(response => {
         console.log("response from DB",response);
-        // this.addNewClientToState(response.data)
+        this.addNewUserToState(response.data)
       })
       .catch(function (error) {
         alert("Sorry, something wrong. New client haven't added.");

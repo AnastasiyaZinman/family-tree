@@ -14,13 +14,13 @@
 }
 .btn-update{
 width:130px;
-background-color: #f3d036;
+background-color: #28a745;
 border: none ;
-color: black;
+color: white;
 }
 .btn-update:hover{
-  background-color: rgb(122, 122, 122);
+  background-color: #1c7b32;
 }
 .btn-update:checked{
-  background-color: rgb(65, 63, 63);
+  background-color: #1fd254;
 }

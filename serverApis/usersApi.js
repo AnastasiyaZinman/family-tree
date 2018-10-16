@@ -19,13 +19,15 @@ router.post('/addChild', jsonParser,async (req, res) => {
         .then((users) => {
             Parent.create({
                 personId: users.id,
-                parentId: req.body.id
+                parentId: req.body.parentId
+            }).then((data)=>{
+                res.json(users)
+            })
+            .error((err) => {
+                res.status(500).send(err);
             })
            
-        })
-        .then((result)=>{
-            res.json(result)
-        })
+        }) 
         .error((err) => {
             res.status(500).send(err);
         })
